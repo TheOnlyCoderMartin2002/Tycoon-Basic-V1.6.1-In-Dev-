@@ -1,0 +1,188 @@
+body {
+  margin: 0 auto;
+  background-color: black;
+  color: snow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+* {
+  padding: 0px;
+  margin: 1.5px;
+  font-family: Helvetica, Arial;
+  text-shadow: none;
+}
+
+p {
+  background-color: transparent;
+  border-radius: 7px;
+  color: lime;
+  padding: 6px;
+  font-family: monospace, Helvetica;
+}
+
+li {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: snow;
+  font-family: fantasy, Arial, sans-serif;
+  padding: 15px;
+  width: 450px;
+  height: fit-content;
+  border-radius: 13px;
+  border-top: 2px solid lime;
+  box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;
+}
+
+.settings {
+  flex-direction: row;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  height: fit-content;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: fantasy, Arial, sans-serif;
+  box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;
+}
+
+.panel-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: fit-content;
+  border-top: 1.5px solid blueviolet;
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 0 3px 3px 0 blueviolet, 0 2px 2px 0 gold;
+  padding: 5px;
+  margin-bottom: 7px;
+  text-align: center;
+  font-family: fantasy, Arial, sans-serif;
+
+}
+
+.num-inp {
+  padding: 7px;
+  color: snow;
+  text-align: center;
+  font-family: monospace, Arial, sans-serif;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px 0 yellow, 0 2px 2px 0 gold;
+  border-top: 1px solid gold;
+  background-color: transparent;
+}
+
+.action-btn {
+  width: 120px;
+  height: fit-content;
+  padding: 5px;
+  margin: 7.5px;
+  letter-spacing: 1px;
+  color: snow;
+  background-color: black;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 3px 3px 0 yellow, 0 2px 2px 0 gold;
+  border-radius: 10px;
+  border: none;
+  border-top: 1.5px solid blueviolet;
+  font-family: monospace, Arial, sans-serif;
+}
+
+.item-slot {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin: 4px;
+  border: none;
+  border-top: 2px solid blueviolet;
+  border-radius: 8px;
+  box-shadow: 0 3px 3px 0 blueviolet, 0 2px 2px 0 gold;
+  font-family: fantasy, Arial, sans-serif;
+}
+
+.purchase-btn {
+  background-color: transparent;
+  padding: 5px;
+  margin: 3px;
+  color: snow;
+  border: 2px solid snow;
+  border-radius: 8px;
+  width: 110px;
+  height: fit-content;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: fantasy, Arial, sans-serif;
+}
+
+table {
+  padding: 5px;
+  display: block;
+}
+
+table, th, td, tr {
+  border: 1.5px solid blueviolet;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px 0 blueviolet, 0 2px 2px 0 snow;
+  padding: 0px;
+  font-size: 15px;
+  font-family: Helvetica;
+  text-align: center;
+}
+
+.hidden-farm-slot {
+  border: 2px solid snow;
+  border-radius: 0px;
+  box-shadow: 0 2px 2px 0 lightblue, 0 2px 2px 0 lightblue;
+  text-shadow: 0.5px 0.5px lightblue;
+  padding: 0px;
+  font-size: 15px;
+  font-family: Helvetica;
+  text-align: center;
+}
+
+.farm-btn {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px double snow;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 0 snow, 0 2px 2px 0 snow;
+  font-family: Helvetica, Arial;
+  background-color: transparent;
+}
+
+.farm-btn:active {
+  background-color: black;
+  color: snow;
+  font-weight: bold;
+  padding: 5.5px;
+}
+
+th {
+  padding: 3px;
+}
