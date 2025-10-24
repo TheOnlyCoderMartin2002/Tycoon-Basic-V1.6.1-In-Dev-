@@ -1,5 +1,6 @@
 body {
   margin: 0 auto;
+  padding-top: 15px;
   background-color: black;
   color: snow;
   display: flex;
@@ -8,11 +9,25 @@ body {
   flex-direction: column;
 }
 
+h1 {
+  font-size: 20px;
+}
+
 * {
   padding: 0px;
   margin: 1.5px;
   font-family: Helvetica, Arial;
   text-shadow: none;
+}
+
+progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-bar {
+  background-color: yellow;
+  border-radius: 3px;
+  padding: 5px;
 }
 
 p {
@@ -30,18 +45,21 @@ li {
 
 .container {
   display: flex;
+  background-size: contain;
+  background-repeat: no-repeat;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   color: snow;
   font-family: fantasy, Arial, sans-serif;
   padding: 15px;
-  width: 450px;
+  width: fit-content;
   height: fit-content;
   border-radius: 13px;
-  border-top: 2px solid lime;
-  box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;
-}
+  border: 3px solid #DCED77;
+  border-top: 2.2px solid whitesmoke;
+  box-shadow: 0 1px 1px 0 #DCED77, 1px 1px 1px 1px whitesmoke;
+  }
 
 .settings {
   flex-direction: row;
@@ -56,12 +74,13 @@ li {
   height: fit-content;
   background-color: transparent;
   border-radius: 8px;
+  border: 2px solid #DCED77;
+  box-shadow: 0 1px 1px 0 #DCED77, 1px 1px 1px 1px whitesmoke;
   padding: 5px;
   margin-bottom: 10px;
   text-align: center;
   font-family: fantasy, Arial, sans-serif;
-  box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;
-}
+  }
 
 .panel-2 {
   display: flex;
@@ -71,10 +90,10 @@ li {
   flex-wrap: wrap;
   width: fit-content;
   height: fit-content;
-  border-top: 1.5px solid blueviolet;
+  border: 2px solid snow;
   background-color: transparent;
   border-radius: 5px;
-  box-shadow: 0 3px 3px 0 blueviolet, 0 2px 2px 0 gold;
+  box-shadow: 0 1px 1px 0 blue, 1px 1px 1px 1px whitesmoke;
   padding: 5px;
   margin-bottom: 7px;
   text-align: center;
@@ -83,15 +102,16 @@ li {
 }
 
 .num-inp {
-  padding: 7px;
-  color: snow;
+  padding: 9px;
+  color: black;
   text-align: center;
-  font-family: monospace, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 0 1px 1px 0 yellow, 0 2px 2px 0 gold;
-  border-top: 1px solid gold;
-  background-color: transparent;
+  box-shadow: 0 1.8px 1.8px 0 whitesmoke, 1px 1px 1px 1px whitesmoke;
+  border-radius: 5px;
+  border: 1.8px solid #6495ED;
+  border-top: 1.8px solid #6495ED;
+  background-color: whitesmoke;
 }
 
 .action-btn {
@@ -99,28 +119,38 @@ li {
   height: fit-content;
   padding: 5px;
   margin: 7.5px;
-  letter-spacing: 1px;
   color: snow;
-  background-color: black;
+  background-color: transparent;
   cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 3px 3px 0 yellow, 0 2px 2px 0 gold;
-  border-radius: 10px;
-  border: none;
-  border-top: 1.5px solid blueviolet;
+  box-shadow: 0 1px 1px 0 whitesmoke, 0.5px 0.5px 0.5px 0.5px whitesmoke;
+  border-radius: 5px;
+  border: 2.5px solid whitesmoke;
+  border-top: 1.8px solid #6495ED;
   font-family: monospace, Arial, sans-serif;
+}
+
+.action-btn:hover {
+  width: 130px;
+  transition: width 1s;
+  background-color: indigo;
+}
+
+.action-btn:active {
+  width: 130px;
+  transition: width 1s;
+  background-color: indigo;
 }
 
 .item-slot {
   width: fit-content;
   height: fit-content;
-  padding: 10px;
-  margin: 4px;
-  border: none;
-  border-top: 2px solid blueviolet;
+  padding: 8px;
+  margin: 5px;
+  border: 1.8px solid #1E90FF;
+  border-top: 1.8px solid #1E90FF;
   border-radius: 8px;
-  box-shadow: 0 3px 3px 0 blueviolet, 0 2px 2px 0 gold;
-  font-family: fantasy, Arial, sans-serif;
+  box-shadow: 0 1px 1px 0 whitesmoke, 0 1px 1px 0 whitesmoke;
+  font-family: Arial, sans-serif;
 }
 
 .purchase-btn {
@@ -129,12 +159,13 @@ li {
   margin: 3px;
   color: snow;
   border: 2px solid snow;
-  border-radius: 8px;
+  box-shadow: 0 1px 1px 0 gold, 0 1px 1px 0 whitesmoke;
+  border-radius: 18px;
   width: 110px;
   height: fit-content;
   cursor: pointer;
   font-size: 14px;
-  font-family: fantasy, Arial, sans-serif;
+  font-family: monospace, Arial, sans-serif;
 }
 
 table {
@@ -143,13 +174,21 @@ table {
 }
 
 table, th, td, tr {
-  border: 1.5px solid blueviolet;
-  border-radius: 8px;
-  box-shadow: 0 2px 2px 0 blueviolet, 0 2px 2px 0 snow;
+  border: 2px solid black;
+  border-radius: 7px;
+  box-shadow: 0 2px 2px 0 yellow, 0 1px 1px 0 whitesmoke;
   padding: 0px;
   font-size: 15px;
   font-family: Helvetica;
   text-align: center;
+  height: fit-content;
+}
+
+td {
+  height: fit-content;
+  padding: 0;
+  border-radius: 20px;
+  box-shadow: 0 1.5px 1.5px 0 snow, 0 0.5px 0.5px 0 whitesmoke;
 }
 
 .hidden-farm-slot {
@@ -166,12 +205,13 @@ table, th, td, tr {
 .farm-btn {
   padding: 5px;
   display: flex;
+  height: fit-content;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 2px double snow;
-  border-radius: 10px;
-  box-shadow: 0 2px 2px 0 snow, 0 2px 2px 0 snow;
+  border: 2px double gold;
+  border-radius: 20px;
+  box-shadow: 0 1px 1px 0 whitesmoke, 0 2px 2px 0 snow;
   font-family: Helvetica, Arial;
   background-color: transparent;
 }
@@ -180,9 +220,13 @@ table, th, td, tr {
   background-color: black;
   color: snow;
   font-weight: bold;
-  padding: 5.5px;
+  padding: 5.3px;
 }
 
 th {
   padding: 3px;
+}
+
+.timed-rewards-table tr {
+  padding: 3.5px;
 }

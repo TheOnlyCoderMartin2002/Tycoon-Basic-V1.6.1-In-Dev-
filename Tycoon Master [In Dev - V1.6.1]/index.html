@@ -1,8 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" href="styles.css"/>
-  <meta name="viewport" content="width=device-width, initial-scale=0.7" />
-  <title>TYCOON BASIC [V1.6.1]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+  <meta name="keywords" content="HTML, CSS. Javascript" />
+  <meta name="author" content="Multiverse (martin lalus)" />
+  <meta name="description" content="Basic wealth simulator game with progression & advanced features" />
+  <title>WEALTH SIMULATOR |BASIC| - [V1.7.2]</title>
 </head>
 <body id="root">
   <audio style="display: none" id="access-granted" controls>
@@ -17,30 +21,74 @@
     <source src="Audio/button-click.mp3" type="audio/ogg">
     <source src="Audio/buttom-click.mp3" type="audio.mpeg">
   </audio>
-  <div class="container">
+  <audio style="display: none" id="popup-effect" controls>
+    <source src="Audio/Pop-up.mp3" type="audio/ogg">
+    <source src="Audio/Pop-up.mp3" type="audio.mpeg">
+  </audio>
+  <audio style="display: none" id="success-effect" controls>
+    <source src="Audio/success.mp3" type="audio/ogg">
+    <source src="Audio/success.mp3" type="audio.mpeg">
+  </audio>
+  <audio style="display: none" id="small-cash-effect" controls>
+    <source src="Audio/Small-cash.mp3" type="audio/ogg">
+    <source src="Audio/Small-cash.mp3" type="audio.mpeg">
+  </audio>
+  <audio style="display: none" id="unlock-effect" controls>
+    <source src="Audio/Unlock.mp3" type="audio/ogg">
+    <source src="Audio/Unlock.mp3" type="audio.mpeg">
+  </audio>
+  <div class="container" id="container">
     <div style="height: fit-content" class="panel" id="balance-panel">
-      <button class="purchase-btn" id="balance-output" style="padding: 2.5px; width: fit-content; border: none; box-shadow: none; text-shadow: 1px 0.5px lightblue; font-size: 15px; font-family: monospace, Arial"></button>
-      <button class="purchase-btn" id="savings-output" style="text-shadow: 1px 0.5px lightblue; padding: 2.5px; width: fit-content; border: none; box-shadow: none; width: fit-content; font-family: monospace, Times New Roman, Arial; font-size: 15px"></button>
-      <button class="purchase-btn" id="loan-debt-output" style="text-shadow: 1px 0.5px lightblue; padding: 2.5px; width: fit-content; border: none; box-shadow: none; color: snow; font-family: monospace, Times New Roman, Arial; font-size: 15px"></button>
-      <button class="purchase-btn" id="tycoon-score-output" style="text-shadow: 1px 0.5px lightblue; padding: 2.5px; width: fit-content; border: none; box-shadow: none; color: snow; font-family: monospace, Times New Roman, Arial; font-size: 15px"></button>
+      <button class="purchase-btn" id="current-time-output" style="padding: 2.5px; color: whitesmoke; width: fit-content; border: none; box-shadow: none; font-size: 16px; font-family: monospace, Arial;"></button>
+      <div id="balance-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+        <button class="purchase-btn" id="balance-output" style="padding: 2.5px; color: lime; font-weight: bold; width: fit-content; border: none; box-shadow: none; font-size: 16px; font-family: monospace, Arial;"></button>
+        <img src="Images/Cash-balance-icon.png" width="35px" height="35px" />
+      </div>
+      <div id="savings-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+        <button class="purchase-btn" id="savings-output" style="padding: 2.5px; color: lime; font-weight: bold; width: fit-content; border: none; box-shadow: none; width: fit-content; font-family: monospace, Times New Roman, Arial; font-size: 16px"></button>
+        <img src="Images/Savings-balance-icon.png" width="35px" height="35px" />
+      </div>
+      <div id="diamonds-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center">
+        <button class="purchase-btn" id="diamond-balance-output" style="padding: 2.5px; color: cyan; font-weight: bold; width: fit-content; border: none; box-shadow: none; font-family: monospace, Times New Roman, Arial; font-size: 16px"></button>
+        <img src="Images/Diamond-icon.png" width="30px" height="25px" />
+      </div>
+      <div id="loan-debt-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center">
+        <button class="purchase-btn" id="loan-debt-output" style="padding: 2.5px; color: yellow; width: fit-content; border: none; box-shadow: none;font-family: monospace, Times New Roman, Arial; font-size: 16px"></button>
+        <img id="debt-icon" style="display: none" src="Images/Debt-icon.png" width="30px" height="25px" />
+      </div>
+      <div id="tycoon-score-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center">
+        <button class="purchase-btn" id="tycoon-score-output" style="padding: 2.5px; color: yellow; width: fit-content; border: none; box-shadow: none; font-family: monospace, Times New Roman, Arial; font-size: 16px"></button>
+        <img src="Images/Tycoon-score-balance-icon.png" width="35px" height="35px" />
+      </div>
     </div>
     <div class="panel" id="number-game-panel">
-      <h3><img src="Images/DIGIT-GUESSING-GAME.png" width="80%" height="20px" /></h3>
-      <p style="background-color: transparent; font-family: Fantasy, Arial; color: snow; margin-bottom: 5px"><img src="Images/ENTER-DIGIT-BETWEEN-1-10.png" width="80%" height="20px" /> <br> <img src="Images/WIN-50-PER-MATCH.png" width="80%" height="20px" /></p>
+     <h3><img src="Images/DIGIT-GUESSING-GAME.png" width="80%" height="20px" /></h3>
+      <!--<p style="background-color: transparent; font-family: Fantasy, Arial; color: snow; margin-bottom: 5px"><img src="Images/ENTER-DIGIT-BETWEEN-1-10.png" width="80%" height="20px" /> <br> <img src="Images/WIN-50--1PT-PER-MATCH.png" width="80%" height="20px" /></p>-->
+      <div id="digit-inps-wrapper" style="flex-direction: row; display: flex; justify-content: center; align-items: center">
+        <input type="number" class="num-inp" id="num-inp" placeholder="ENTER DIGIT [1-10]" style="width: 150px; height: 20px">
+        <button class="action-btn" id="perform-btn" onclick="playAudio3()"><img src="Images/ENTER.png" width="90%" height="20px" /></button>
+      </div>
       <div style="display: flex; flex-direction: row; box-shadow: none; border: none" class="panel">
-        <input type="number" class="num-inp" id="num-inp" placeholder="ENTER DIGIT [1-10]" style="width: 180px">
-        <button class="action-btn" id="perform-btn" onclick="playAudio3()"><img src="Images/Enter.jpg" width="100%" height="20px" /></button>
+        <button style="width: 60px; padding: 5px; height: 50px" class="action-btn settings-btn" id="main-settings-btn" onclick="playAudio3()"><img src="Images/Settings icon.png" width="30px" height="25px" /></button>
+        <button style="width: 60px; padding: 5px; height: 50px" class="action-btn" id="number-game-info-btn" onclick="playAudio3()"><img src="Images/INFO.png" width="30px" height="25px" /></button>
+        <button style="display: none; width: 30%; height: 50px" class="purchase-btn" id="close-number-game-info-btn" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="fit-content" height="17px" /></button>
+        <button style="width: 60px; padding: 5px; height: 50px" class="action-btn" id="timed-cash-rewards-btn" onclick="playAudio3()"><img src="Images/Timed cash.png" width="30px" height="25px" /></button>
+        <button style="width: 60px; padding: 5px; height: 50px" class="action-btn" id="stats-btn" onclick="playAudio3()"><img src="Images/Stats-icon.png" width="30px" height="25px" /></button>
+        <button style="width: 60px; padding: 5px; height: 50px" class="action-btn" id="vip-btn" onclick="playAudio3()"><img src="Images/Vip-icon.png" width="30px" height="25px" /></button>
+        </div>
       </div>
-      </div>
-    <div class="panel" style="flex-direction: row; flex-wrap: wrap; border: none;">
+    <div class="panel" style="flex-direction: row; flex-wrap: wrap; border: none; box-shadow: none">
       <button style="display: none; width: 30%;" class="purchase-btn" id="close-admin-btn" onclick="playAudio3()"><img src="Images/CLOSE.png" width="70%" height="17px" /></button>
       <button style="display: none; width: 30%;" class="purchase-btn" id="close-farm-info" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="80%" height="17px" /></button>
+      <button style="display: none; width: fit-content" class="purchase-btn" id="collect-ready-farms-btn" onclick="playAudio3()"><img src="Images/QUICK-COLLECT.png" width="90%" height="17px" /></button>
       <button style="display: none; width: 30%" class="purchase-btn" id="close-shop-btn" onclick="playAudio3()"><img src="Images/CLOSE.png" width="70%" height="17px" /></button>
       <button style="display: none; width: 40px" class="purchase-btn" id="farm-info-btn" onclick="playAudio3()"><img src="Images/INFO.png" width="90%" height="17px" /></button>
       <button style="display: none; width: 40px" class="purchase-btn" id="loan-info-btn" onclick="playAudio3()"><img src="Images/INFO.png" width="90%" height="17px" /></button>
       <button style="display: none; width: 40px" class="purchase-btn" id="income-upgrades-info-btn" onclick="playAudio3()"><img src="Images/INFO.png" width="90%" height="17px" /></button>
       <button style="display: none; width: 30%;" class="purchase-btn" id="close-loan-info" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="80%" height="17px" /></button>
-      <button style="display: none; width: 30%;" class="purchase-btn" id="close-income-upgrades-info" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="80%" height="17px" /></button>
+      <button style="display: none; width: 30%;" class="purchase-btn" id="close-income-upgrades-info" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="fit-content" height="17px" /></button>
+      <button style="display: none; width: 10%;" class="purchase-btn settings-btn" id="farm-table-settings-btn" onclick="playAudio3()"><img src="Images/Settings icon.png" width="fit-content" height="17px" /></button>
+      
       <div style="display: none; border: none; box-shadow: none" class="panel" id="savings-panel">
       <h2 id="savings-output"></h2>
       <h3 style="margin-bottom: 10px"><img src="Images/BALANCE--SAVINGS.png" width="95%" height="20px" /></h3>
@@ -67,29 +115,93 @@
         </div>
         <h3><img src="Images/TOOLS.png" width="80%" height="20px" /></h3>
         <button style="display: none; width: 30%;" class="purchase-btn" id="close-updates-panel" onclick="playAudio3()"><img src="Images/HIDE-INFO.png" width="80%" height="17px" /></button>
-        <button class="purchase-btn" id="updates-btn" onclick="playAudio3()"><img src="Images/Updates.jpg" width="100%" height="20px" /></button>
+        <button class="purchase-btn" id="updates-btn" onclick="playAudio3()" style="width: fit-content; height: 35px"><img src="Images/PATCH-NOTES.png" width="80%" height="20px" /></button>
   </div>
+      <div class="panel" style="display: none; border: none; box-shadow: none" id="farm-table-settings-panel"> <!-- SETTINGS -->
+        <h3 style="width: fit-content"><img src="Images/BALANCES-TAB-VIEW.png" width="90%" height="20px" /></h3><br>
+        <button class="purchase-btn" id="hide-balance-panel" style="width: fit-content; height: 35px"><img src="Images/HIDE-BALANCE-TAB.png" width="80%" height="20px" /></button>
+        <button class="purchase-btn" id="show-balance-panel" style="width: fit-content; height: 35px"><img src="Images/SHOW-BALANCE-TAB.png" width="80%" height="20px" /></button><br>
+        <button class="purchase-btn" id="close-table-settings" style="width: fit-content; height: 35px"><img src="Images/CLOSE-SETTINGS.png" width="80%" height="20px" /></button><br>
+        <button style="width: fit-content; font-family: monospace, Arial; padding: 15px; color: yellow; font-weight: bold" class="purchase-btn" id="promo-codes-btn">PROMOTIONAL CODES</button>
+        <div style="display: none; padding: 10px" class="panel" id="promo-panel">
+          <h3 style="width: fit-content; font-family: monospace, Arial">PROMO / SECRET CODES</h3><br>
+          <p>Enter codes discovered during gameplay or provided by the developer</p><br>
+          <p>All codes except background color codes can be used only once!</p><br>
+          <input type="number" class="num-inp" id="promo-code-inp" placeholder="ENTER CODE" /><br>
+          <button style="width: fit-content; font-family: monospace, Arial; padding: 15px; color: yellow; font-weight: bold" class="purchase-btn" id="code-apply-btn">APPLY</button>       
+        </div>
+      </div>
       <div style="display: none; border: none; box-shadow: none; flex-wrap: wrap; flex-direction: row" class="panel" id="loans-panel">
           <button class="purchase-btn loan-option" id="loan-500"><img src="Images/500cost2.png" width="80%" height="20px" /></button>
           <button class="purchase-btn loan-option" id="loan-1000"><img src="Images/1000cost2.png" width="80%" height="20px" /></button>
           <button class="purchase-btn loan-option" id="loan-2500"><img src="Images/2500.png" width="80%" height="20px" /></button>
-          <button class="purchase-btn loan-option" id="loan-5000"><img src="Images/5000 (1).png" width="80%" height="20px" /></button>
           <div style="display: block; border: none; box-shadow: none; flex-direction: column; flex-wrap: wrap" class="panel" id="loan-repayment-panel">
           <input type="number" class="num-inp" id="custom-payment-inp" placeholder="Custom Repayment" style="margin-bottom: 10px"><br>
           <button style="width: fit-content; padding: 10px" class="purchase-btn" id="pay-custom-amount"><img src="Images/PAY-CUSTOM-AMOUNT.png" width="95%" height="17px" /></button><br>
           </div>
         </div>
-        <div style="display: none; border: none; box-shadow: none" class="panel" id="store-panel"> <!-- SHOP -->
-          <h3 style="padding: 5px"><img src="Images/TYCOON-SHOP.png" width="80%" height="20px" /></h3><br>
+        <div style="display: none; border: none; box-shadow: none; max-height: 50ppx; overflow: scroll" class="panel" id="store-panel"> <!-- SHOP -->
+          <h3 style="padding: 5px"><img src="Images/SIMULATOR-SHOP.png" width="80%" height="30px" /></h3><br>
           <div style="flex-direction: row; flex-wrap: wrap">
             <h4 style="height: 30px"><img src="Images/AUTO-COLLECT-PERK.png" width="90%" height="20px" /></h4>
             <h4><img src="Images/auto-collect.webp" width="50%" height="130px" /></h4>
           </div>
-          <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; box-shadow: 0.2px 0.2px gold; text-transform: uppercase">This perk will automatically collect the first 4 rows on the Cash Farm table as soon as they are ready for collection!</p>
-          <button style="width: fit-content" class="purchase-btn" id="buy-perk-1">OBTAIN PERK <p style="padding: 0">$2,000</p></button>
-        </div>
-        <div style="display: none; flex-direction: column; max-height: 420px; overflow: scroll" id="updates-panel">
-        <br><h14 style="text-align: center"><img src="Images/UPDATES-LOG.png" width="80%" height="20px" /></h4><br><br>
+          <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; box-shadow: 0.5px 0.5px gold; text-transform: uppercase">| Level 1 | Auto-Collect Perk will automatically collect the initial 4 rows of the | Cash Farm Table | whenever they are ready for collection!</p><br>
+          <button style="width: fit-content" class="purchase-btn" id="buy-perk-1">OBTAIN PERK <p style="padding: 0; font-size: 16px">$1,500</p></button><br>
+           <h4 style="padding: 5px"><img src="Images/X3-INCOME-PERK--LEVEL-1.png" width="90%" height="20px" /></h4><br>
+           <h4><img src="Images/X3-Income.png" width="100%" height="130px" /></h4>         
+           <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; box-shadow: 0.5px 0.5px gold; text-transform: uppercase">| Level 1 | X3 income Perk will make the first 4 rows produce X3 their default value. Combining this perk with the Auto-Collect perk will greatly increase your income!</p><br>
+           <button style="width: fit-content" class="purchase-btn" id="buy-perk-2">OBTAIN PERK <p style="padding: 0; font-size: 16px"><img src="Images/X1.png" width="35px" height="30px"/><img src="Images/Diamond-icon.png" width="50px" height="30px"/></p></button><br>
+           <h4 style="padding: 5px"><img src="Images/SPECIAL-FARMS.png" width="90%" height="30px" /></h4><br>
+           <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; box-shadow: 0.5px 0.5px gold; text-transform: uppercase">Special farms can greatly increase your income, and other stats. This is a new implementation, therefore more farms will be added soon.</p><br>          
+           <div class="panel" style="border: none; box-shadow: none; flex-direction: column">
+             <table>
+               <tr>
+                 <th><img src="Images/Cash-balance-icon.png" width="80%" height="50px" /></th>
+                 <th><img src="Images/STATUS.png" width="45px" height="20px" /></th>
+                 <th style="width: 60px"><img src="Images/PRICE.png" width="95%" height="20px" /></th>
+                 <th style="width: 80px"><img src="Images/RATE.png" width="85%" height="20px" /></th>
+                 <th style="width: 50px"><img src="Images/Multiplier.png" width="90%" height="20px" /></th>
+               </tr>
+               <tr>
+                 <td id="cash-point-10"><button style="display: none; height: 50px" class="farm-btn" id="farm-btn-12"><img src="Images/AUTO.png" width="95%" height="25px" /></button><div style="color: lime" class="farm-btn" id="buy-farm-btn-8"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+                 <td id="collect-row-12"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-12"><strong><img src="Images/Buy.png" width="95%" height="35px" /></strong></p></td>
+                 <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-8"><img src="Images/X1.png" width="95%" height="15px" /><img src="Images/Diamond-icon.png" width="50px" height="25px" /></p></td>
+                 <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/2PTS30s.png" width="95%" height="20px" /></p></td>
+                 <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-12"><span style="color: lime; font-family: monospace, Arial">BUY 250PTS</span></button></td>       
+               </tr>
+               <tr>
+                 <td id="cash-point-11"><button style="display: none; height: 50px" class="farm-btn" id="farm-btn-13"><img src="Images/AUTO.png" width="95%" height="25px" /></button><div style="color: lime" class="farm-btn" id="buy-farm-btn-9"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+                 <td id="collect-row-13"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-13"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+                 <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-9"><img src="Images/X5.png" width="95%" height="15px" /><img src="Images/Diamond-icon.png" width="50px" height="25px" /></p></td>
+                 <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/20030s.png" width="95%" height="20px" /></p></td>
+                 <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-13"><span style="color: lime; font-family: monospace, Arial">BUY 500PTS</span></button></td>       
+               </tr>
+             </table>
+           </div>
+          <h4 style="padding: 5px"><img src="Images/PROMOTION-CODES.png" width="70%" height="30px" /></h4><br>
+           <p style="color: snow; font-family: monospace, Arial; text-transform: uppercase; box-shadow: 0.5px 0.5px gold;">Upon buying a promo code you can note it down & use it at your will. However not all codes can be used multiple times in the same session!</p><br>          
+           <div id="promo-code-shop" class="panel" style="border: none; box-shadow: none; flex-direction: column">
+             <div class="item-slot" style="width: fit-content; border: none; box-shadow: none">
+               <p style="color: snow"><img src="Images/DARK-PURPLE-BACKGROUND.png" width="90%" height="20px" /></p>
+               <button id="buy-code-btn-1" style="width: fit-content" class="purchase-btn"><img src="Images/BUY-CODE.png" width="90%" height="20px" /></button>
+             </div>
+             <div class="item-slot-2" style="width: fit-content">
+               <p style="color: snow"><img src="Images/EXTRA-DARK-RED-BACKGROUN.png" width="90%" height="20px" /></p>
+               <button id="buy-code-btn-2" style="width: fit-content" class="purchase-btn"><img src="Images/BUY-CODE.png" width="90%" height="20px" /></button>
+             </div>
+             <div class="item-slot-3" style="width: fit-content">
+               <p style="color: snow"><img src="Images/X2-INCOME-INITIAL-4-ROW.png" width="90%" height="20px" /></p>
+               <button id="buy-code-btn-3" style="width: fit-content" class="purchase-btn"><img src="Images/BUY-CODE.png" width="90%" height="20px" /></button>
+             </div>
+             <div class="item-slot-4" style="width: fit-content">
+               <p style="color: snow"><img src="Images/X3-INCOME-INITIAL-4-ROW.png" width="90%" height="20px" /></p>
+               <button id="buy-code-btn-4" style="width: fit-content" class="purchase-btn"><img src="Images/BUY-CODE.png" width="90%" height="20px" /></button>
+             </div>
+           </div>
+          </div>
+        <div style="display: none; flex-direction: column; max-height: 500px; overflow: scroll" id="updates-panel">
+        <br><h4 style="text-align: center"><img src="Images/UPDATES-LOG.png" width="80%" height="20px" /></h4><br><br>
         <h3><img src="Images/V15.png" width="30%" height="20px"/></h3>
           <p style="color: snow; font-">■ Redesigned most of the interface for simplicity & as recommended for more consistency with eye-friendly colors.</p><br>
           <p style="color: snow">■ It's now possible to transfer from main balance to savings, and the other way around! (working on implementing functions that will ensure a user's savings will be saved even if the program is closed)</p><br>
@@ -104,133 +216,286 @@
         <p style="color: snow">■ Added new [Loans] option to main menu which displays a list of available loans. You will be able to obtain higher loans depending on your tycoon credit score!</p>
         <p style="color: snow">■ Added information panels for loans, cash farm & income upgrades!</p>
         <p style="color: snow">■ All income upgrades can now be re-purchased over and over instead of being disabled after purchase!</p>
+          <h3><img src="Images/V165-MAJOR.png" width="30%" height="20px"/></h3>
+          <p style="color: snow">■ Entire UI & color spectrum has been refined for a more professional appearance & for simplicity</p>
+          <p style="color: snow">■ Tasks have been improved, and a progress bar implemented for each one! Thirdly more tasks are created</p>
+          <p style="color: snow">■ Cash farm table further refined & also implemented 2 new unique farms!</p>
+          <p style="color: snow">■ New | Quick-Collect | option is available at the cash farm menu. This option allows a user to quickly collect whichever farms are ready for collection! [IMPORTANT]: Both Quick & Auto collect only apply to the first 4 rows of the cash farm table!</p>
+          <p style="color: snow">■ Fixed a bug regarding task completions. Reward buttons would re-enable even upon task completion (resolved)</p>
+          <p style="color: snow">■ Fixed yet another bug regarding the cash farm table. Upon leaving the cash farm and returning the timer values would start getting out of place (resolved)</p>
+          <h3><img src="Images/V17--MID-ALHPA.png" width="30%" height="20px"/></h3>
+          <p style="color: snow">■ Balance panel has been greatly refined & expanded by implementing a new |Diamond| balance! Additionally each balance now has its appropriate icon!</p>
+          <p style="color: snow">■ Added new features to the |Digit Guessing Game| panel such as access to the |Playtime Rewards| panel & a |Settings| panel to hide/show the balances tab</p>
+          <p style="color: snow">■ 4 new income upgrades implemented to expand the range & variety</p>
+          <p style="color: snow">■ 2 new special cash farms implemented</p>
+          <p style="color: snow">■ 2 new tasks implemented for more progression</p>
+          <p style="color: snow">■ Cash farm table greatly improved & a new column implemented that features a special perk that will allow users to use their tycoon points to buy double income for cash farms to greatly increase income!</p>
+          <p style="color: snow">■ Improved UI in general including some improvement to the frame rate as balances increase with speed!</p>
+          <p style="color: snow">■ $5,000 loan has been removed</p>
+          <p style="color: snow">■ Implemented a new row & system to the Cash Farm table. Upon purchasing the (X2 income) on each row, the value of that row will be doubled. This applies to all farms!</p>
+          <p style="color: snow">■ New perk added to the Shop. This perk will make the first 4 rows grant (X3 income). Combining perks 1 & 2 will greatly increase cash income!</p>
+          <h3><img src="Images/V172---Refinement-Upda.png" width="50%" height="40px"/></h3>
+          <p style="color: snow">■ Added 2 new tasks with new reward type</p>
+          <p style="color: snow">■ Improved info panels with new images for a better tutorial for beginners</p>
+          <p style="color: snow">■ Moderate improvements to the UI & navigation clarity. Secondly the farm table is further refined and patched!</p>
+          <p style="color: snow">■ Tasks menu is greatly improved for understanding & appearance!</p>
+          <p style="color: snow">■ New & improved sound effects + Added numerous more promo codes!</p>
+          <p style="color: snow">■ Income upgrades change the container's background depending on the state. Purchase successful will display green & unsuccessful / not enough funds will display red!</p>
+          <p style="color: snow">■ Reverted the 24-hour time format (00:00) from cash farms & brought back regular counters for simplicity</p>
+          <p style="color: snow">■ Fixed cash farm bugs where some farms would not receive X2 income when it was purchased on that row. [All farms resolved]</p>
+          <p style="color: snow">■ Cash farm table UI massively improved for a modern appearance!</p>        
+          <p style="color: snow">■ Added new buyable items to the shop such as promotion codes & also relocated the final 2 farms to the shop</p>
+          
         </div>
-      <div class="panel" id="tasks-menu" style="display: none; border: none; box-shadow: none; max-height: 500px; overflow: scroll"> <!-- TASKS -->
+      <div class="panel" id="tasks-menu" style="display: none; border: none; box-shadow: none; max-height: fit-content; overflow: scroll"> <!-- TASKS -->
         <div style="border: none; box-shadow: none" class="panel" id="task-tab">
-          <p style="color: gold; text-transform: uppercase">Get 2 matches in the digit guessing game!</p>
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Get 2 matches in the digit guessing game!</p><br>
+          <div style="display: block"><progress id="task-1-progress" value="0" max="2"></progress><h3 id="task-1-progress-output"></h3></div><br>
+          <div id="task-1-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="60px" height="60px" />
+            <img src="Images/Tycoon-score-balance-icon.png" width="40px" height="40px" />
+          </div><br>
           <div style="flex-direction: row; flex-wrap: wrap">
-            <button style="width: fit-content" class="purchase-btn" id="task-details-btn">DETAILS</button>
-            <button style="width: fit-content" class="purchase-btn" id="claim-task-reward-btn" disabled="true">TASK INCOMPLETE</button>
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
           </div>
         </div>
-        <div style="border: none; box-shadow: none" class="panel" id="task-tab-2">
-          <p style="color: gold; text-transform: uppercase">GET 4 matches in the digit guessing game!</p>
+        <div style="border: none; box-shadow: none" class="panel" id="task-tab-2"> 
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Purchase 3X $200 INCOME UPGRADES!</p>
+          <div style="flex-direction: row;"><progress id="task-2-progress" value="0" max="3"></progress><h3 id="task-2-progress-output"></h3></div><br>
+          <div id="task-2-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Tycoon-score-balance-icon.png" width="40px" height="40px" />
+          </div><br>
           <div style="flex-direction: row; flex-wrap: wrap">
-            <button style="width: fit-content" class="purchase-btn" id="task-details-btn-2">DETAILS</button>
-            <button style="width: fit-content" class="purchase-btn" id="claim-task-reward-btn-2" disabled="true">TASK INCOMPLETE</button>
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn-2"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn-2" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
           </div>
         </div>
-        <div style="border: none; box-shadow: none" class="panel" id="task-tab-3">
-          <p style="color: gold; text-transform: uppercase">GET 6 matches in the digit guessing game!</p>
+        <div style="border: none; box-shadow: none" class="panel" id="task-tab-3"> 
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Collect the |$1.00| value at the Cash Farm X200</p>
+          <div style="flex-direction: row;"><progress id="task-3-progress" value="0" max="200"></progress><h3 id="task-3-progress-output"></h3></div><br>
+          <div id="task-3-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Tycoon-score-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Diamond-icon.png" width="40px" height="40px" />
+          </div><br>
           <div style="flex-direction: row; flex-wrap: wrap">
-            <button style="width: fit-content" class="purchase-btn" id="task-details-btn-3">DETAILS</button>
-            <button style="width: fit-content" class="purchase-btn" id="claim-task-reward-btn-3" disabled="true">TASK INCOMPLETE</button>
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn-3"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn-3" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
           </div>
         </div>
         <div style="border: none; box-shadow: none" class="panel" id="task-tab-4"> 
-          <p style="color: gold; text-transform: uppercase">Purchase 3X $200 INCOME UPGRADES!</p>
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Earn $2000 by farming cash and / or obtaining income upgrades!</p>
+          <div style="flex-direction: row;"><progress id="task-4-progress" value="0" max="2000"></progress><h3 id="task-4-progress-output"></h3></div><br>
+          <div id="task-4-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Tycoon-score-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Diamond-icon.png" width="40px" height="40px" />
+          </div><br>
           <div style="flex-direction: row; flex-wrap: wrap">
-            <button style="width: fit-content" class="purchase-btn" id="task-details-btn-4">DETAILS</button>
-            <button style="width: fit-content" class="purchase-btn" id="claim-task-reward-btn-4" disabled="true">TASK INCOMPLETE</button>
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn-4"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn-4" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
+          </div>
+        </div>
+        <div style="border: none; box-shadow: none" class="panel" id="task-tab-5"> 
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Own 100 income upgrades!</p>
+          <div style="flex-direction: row;"><progress id="task-5-progress" value="0" max="100"></progress><h3 id="task-5-progress-output"></h3></div><br>
+          <div id="task-5-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Diamond-icon.png" width="40px" height="40px" />
+          </div><br>
+          <div style="flex-direction: row; flex-wrap: wrap">
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn-5"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn-5" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
+          </div>
+        </div>
+        <div style="border: none; box-shadow: none" class="panel" id="task-tab-6"> 
+          <p style="color: lime; font-weight: bold; font-size: 18px; font-family: monospace, Arial; text-transform: uppercase">Purchase / Unlock all Cash Farms! (excluding the final 2)</p>
+          <div style="flex-direction: row;"><progress id="task-6-progress" value="0" max="7"></progress><h3 id="task-6-progress-output"></h3></div><br>
+          <div id="task-6-reward" style="flex-direction: row; display: flex; justify-content: center; align-items: center;">
+            <p><img src="Images/REWARDS.png" width="90%" height="30px" /></p>
+            <img src="Images/Cash-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Tycoon-score-balance-icon.png" width="40px" height="40px" />
+            <img src="Images/Diamond-icon.png" width="40px" height="40px" />
+          </div><br>
+          <div style="flex-direction: row; flex-wrap: wrap">
+            <button style="width: 40%; padding: 10px" class="purchase-btn" id="task-details-btn-6"><img src="Images/DETAILS.png" width="95%" height="35px" /></button>
+            <button style="width: 50%; padding: 10px" class="purchase-btn" id="claim-task-reward-btn-6" disabled="true"><img src="Images/TASK-INCOMPLETE.png" width="95%" height="35px" /></button>
           </div>
         </div>
       </div>
       <div style="display: none; border: none; box-shadow: none" class="panel" id="farm-table-info">
-        <h3><img src="Images/COLLECTING-CASH.png" width="80%" height="20px" /></h3>
-        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ The initial 4 cash farms are free to collect every (x seconds) These cash values will be added to your main balance.</p>
-        <h3><img src="Images/BUYING-FARMS.png" width="80%" height="20px" /></h3>
-        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ The following 5 cash farms must be purchased before being collectible. The last 2 cash farms are special as they will award $10 & $20 per click!</p>
+        <h3><img src="Images/COLLECTING-CASH.png" width="80%" height="20px" /></h3><br>
+        <img src="Images/Collecting-cash-info-pic.jpg" width="400px" height="200px" /><br>
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ The initial 4 cash farms are free to collect every (x seconds) These cash values will be added to your main balance.</p><br>
+        <h3><img src="Images/BUYING-FARMS.png" width="80%" height="20px" /></h3><br>
+        <img src="Images/Buying-farms-info-pic.jpg" width="400px" height="200px" /><br>      
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ The following 9 cash farms must be purchased before being collectible. There are a variety of cash farms such instant (per-click) farms, timed farms and special auto-collected farm upon purchase!</p><br>
       </div>
       <div style="display: none; border: none; box-shadow: none" class="panel" id="loan-info-panel">
         <h3><img src="Images/LOAN-INFORMATION.png" width="80%" height="20px" /></h3>
-        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ LOANS CAN BE OBTAINED BY BUILDING YOUR [TYCOON SCORE]. HIGHER SCORE MEANS ELIGILITY FOR BIGGER LOANS!</p>
-        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ YOU CAN PROGRESS YOUR [TYCOON SCORE] BY PURCHASING INCOME UPGRADES, FARMING CASH FROM ROW 5, 6 & 7. YOU WILL ALSO BE AWARDED SCORE FOR REPAYING YOUR DEBTS, WHETHER IN FULL OR PARTIAL PAYMENTS!</p>
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ LOANS CAN BE OBTAINED BY BUILDING YOUR [TYCOON POINTS]. HIGHER SCORE MEANS ELIGILITY FOR BIGGER LOANS!</p>
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ YOU CAN PROGRESS YOUR [TYCOON SCORE] BY PURCHASING INCOME UPGRADES, FARMING CASH FROM ROW 5, 6 & 7.</p>
         </div>
       <div style="display: none; border: none; box-shadow: none" class="panel" id="income-upgrades-info"> 
         <h3><img src="Images/INCOME-UPGRADES-INFO.png" width="80%" height="20px" /></h3>
+        <img src="Images/Income-upgrades-info-pic.jpg" width="400px" height="300px" /><br>       
         <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ INCOME UPGRADES ARE AN EFFICIENT WAY TO INCREASE YOUR PASSIVE INCOME. YOU CAN EARN CASH IN MANY WAYS TO PURCHASE THESE. IT'S IMPORTANT TO KNOW THAT ALL THESE UPGRADES STACK MEANING THE MORE YOU PURCHASE, THE MORE YOU WILL EARN OVER TIME!</p>
         <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ OBTAINING MORE UPGRADES WILL IN RETURN REWARD YOU WITH TYCOON CREDIT SCORE POINTS WHICH WILL ADVANCE YOUR ELIGIBILITY FOR LARGER LOANS!</p>
       </div>
+      <div class="panel" id="number-game-info-panel" style="display: none; border: none; box-shadow: none">
+        <h3><img src="Images/DIGIT-GUESSING-GAME-INFO.png" width="95%" height="20px" /></h3>
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ SIMPLY THINK OF A DIGIT BETWEEN 1 & 10, THEN CLICK ENTER TO GET THE RESULT</p>
+        <p style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase">■ IF YOUR NUMBER MATCHES THE ONE THAT IS RANDOMLY GENERATED, YOU WILL WIN $50 & 2 TYCOON PTS PER MATCH!</p>
+      </div>
+      <div class="panel" id="stats-panel" style="display: none; border: none; box-shadow: none">
+        <div class="purchase-btn" style="border: none; box-shadow: none; font-family: monospace, Arial; width: fit-content; font-size: 16px"><h3 id="owned-upgrades-output" style="font-family: monospace, Arial; font-size: 16px">OWNED UPGRADES : 0</h3></div>
+        <div class="panel" style="border: none; box-shadow: none; font-family: monospace, Arial, width: fit-content; font-size: 16px"><h3 style="font-family: monospace, Arial; font-size: 16px" id="total-passive-earnings-output"></h3></div>
+        <h3 style="font-family: monospace, Arial; font-size: 16px" id="total-cash-farm-output"></h3>
+        <h3 style="font-family: monospace, Arial; font-size: 16px; margin-bottom: 6px" id="total-farm-clicks-output"></h3>     
+      </div>
       <button class="action-btn" id="shop-btn" onclick="playAudio3()"><img src="Images/UPGRADES.png" width="95%" height="20px" /></button>  <!-- MENU -->
-      <button class="action-btn" id="earn-btn" onclick="playAudio3()"><img src="Images/CASH-FARM.png" width="95%" height="20px" /></button>
+      <button class="action-btn" id="earn-btn" onclick="playAudio3()"><img src="Images/CASH-FARMs (2).png" width="95%" height="20px" /></button>
       <button class="action-btn" id="tasks-btn" onclick="playAudio3()"><img src="Images/TASKS.png" width="95%" height="20px" /></button>
       <button class="action-btn" id="savings-btn" onclick='playAudio3()'><img src="Images/TRANSFER.png" width="95%" height="20px" /></button>
       <button class="action-btn" id="admin-btn" onclick="playAudio3()"><img src="Images/ADMIN-HUB.png" width="95%" height="20px" /></button>
-      <button class="action-btn" id="settings-btn" onclick="playAudio3()"><img src="Images/SETTINGS.png" width="95%" height="20px" /></button>
-      <button class="action-btn" id="loans-btn" onclick="playAudio3()" style="box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;"><img src="Images/LOANS.png" width="95%" height="20px" /></button>
-      <button class="action-btn" id="store-btn" onclick="playAudio3()" style="box-shadow: 0 3px 3px 0 lime, 0 2px 2px 0 gold;"><img src="Images/SHOP.png" width="95%" height="20px" /></button>
+      <button class="action-btn" id="settings-btn" onclick="playAudio3()"><img src="Images/PREFERENCES.png" width="95%" height="20px" /></button>
+      <button class="action-btn" id="loans-btn" onclick="playAudio3()" style="box-shadow: 0 3px 3px 0 orange, 1px 2px 2px 1px orange; border: 3px solid orange"><img src="Images/LOANS.png" width="95%" height="20px" /></button>
+      <button class="action-btn" id="store-btn" onclick="playAudio3()" style="box-shadow: 0 3px 3px 0 darkorange, 1px 2px 2px 1px darkorange; border: 3px solid orange"><img src="Images/SHOP.png" width="95%" height="20px" /></button>
+      </div>
+      <div class="panel" style="display: none; border: none; box-shadow: none; flex-direction: row; flex-wrap: wrap" id="timed-cash-rewards-panel">
+        <table class="timed-rewards-table">
+            <th colspan="4" style="width: 150px; padding: 3px; font-family: monospace">TIMED CASH REWARDS</th>
+            <tr>
+              <td style="width: 150px; padding: 3px; font-family: monospace">REWARD</td>
+              <td style="width: 150px; padding: 3px; font-family: monospace">PLAYTIME</td>
+              <td style="width: 150px; padding: 3px; font-family: monospace">STATUS</td>
+              <td style="width: 150px; padding: 3px; font-family: monospace">COLLECT</td>
+            </tr>
+            <tr>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/250cost.png" width="95%" height="20px" /> <br> <span style="color: cyan">5PTS</span></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/2MIN.png" width="95%" height="20px" /></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace" id="status-tab-1"><img src="Images/WAIT (1).png" width="95%" height="20px" /></td>
+              <td><button style="color: lime; display: none; width: 95%; height: 45px" class="farm-btn" id="claim-timed-cash-1">CLAIM</button></td>
+            </tr>
+            <tr>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/500cost.png" width="95%" height="20px" /> <br> <span style="color: cyan">5PTS</span></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/5MIN.png" width="95%" height="20px" /></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace" id="status-tab-2"><img src="Images/WAIT (1).png" width="95%" height="20px" /></td>
+              <td><button style="color: lime; display: none; width: 95%; height: 45px" class="farm-btn" id="claim-timed-cash-2">CLAIM</button></td>
+            </tr>
+            <tr>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/1000cost.png" width="95%" height="20px" /> <br> <span style="color: cyan">10PTS</span></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/10MIN.png" width="95%" height="20px" /></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace" id="status-tab-3"><img src="Images/WAIT (1).png" width="95%" height="20px" /></td>
+              <td><button style="color: lime; display: none; width: 95%; height: 45px" class="farm-btn" id="claim-timed-cash-3">CLAIM</button></td>
+            </tr>
+            <tr>
+              <td style="width: 200px; padding: 3px; font-family: monospace"><img src="Images/2500 (1).png" width="95%" height="20px" /> <br> <span style="color: cyan">15PTS</span></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace"><img src="Images/20MIN.png" width="95%" height="20px" /></td>
+              <td style="width: 150px; padding: 3px; font-family: monospace" id="status-tab-4"><img src="Images/WAIT (1).png" width="95%" height="20px" /></td>
+              <td><button style="color: lime; display: none; width: 95%; height: 45px" class="farm-btn" id="claim-timed-cash-4">CLAIM</button></td>
+            </tr>
+        </table>
+      </div>
       <div style="display: none; width: fit-content; border: none; box-shadow: none; width: fit-content" class="panel-2" id="earn-panel">
-        <h3 id="total-cash-farm-output"></h3>
-        <h3 id="total-farm-clicks-output"></h3>
         <table>
-          <th colspan="4" style="padding: 3px"><img src="Images/CASH-FARMS.png" width="80%" height="20px" /></th>
+          <th colspan="5" style="padding: 3px"><img src="Images/CASH-FARMS (2).png" width="80%" height="25px" /></th> <!-- CASH FARMS -->
           <tr>
-            <th><img src="Images/CASH.png" width="90%" height="20px" /></th>
-            <th><img src="Images/STATUS.png" width="90%" height="20px" /></th>
-            <th><img src="Images/PRICE.png" width="90%" height="20px" /></th>
-            <th><img src="Images/RATE.png" width="90%" height="20px" /></th>
+            <th><img src="Images/Cash-balance-icon.png" width="80%" height="50px" /></th>
+            <th><img src="Images/STATUS.png" width="65%" height="20px" /></th>
+            <th style="width: 60px"><img src="Images/PRICE.png" width="95%" height="20px" /></th>
+            <th style="width: 80px"><img src="Images/RATE.png" width="85%" height="20px" /></th>
+            <th style="width: 50px"><img src="Images/Multiplier.png" width="90%" height="20px" /></th>
           </tr>
           <tr>
-            <td><div class="farm-btn" id="farm-btn" style="width: 75px"><img src="Images/100.png" width="95%" height="20px" /></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-1">Collect</p></td>
+            <td><div class="farm-btn" id="farm-btn" style="width: 85px"><img src="Images/100.png" width="95%" height="20px" /></div></td>
+            <td style="background-color: darkgreen"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-1"><img src="Images/Ready.png" width="95%" height="20px" /></p></td>
             <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/Free.png" width="95%" height="20px" /></p></td>
             <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow"><img src="Images/Instant.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-1"><span style="color: lime; font-family: monospace, Arial">BUY 10PTS</span></button></td>
           </tr>
           <tr>
-            <td><div class="farm-btn" id="farm-btn-2"><img src="Images/300.png" width="95%" height="20px" /></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-2">Collect</p></td>
+            <td id="cash-point-1"><div class="farm-btn" id="farm-btn-2"><img src="Images/300.png" width="95%" height="20px" /></div></td>
+            <td id="collect-row-2" style="background-color: darkgreen"><p style="font-weight: bold; font-family: Arial; color: yellow;" id="cooldown-2"><img src="Images/Ready.png" width="95%" height="20px" /></p></td>
             <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/Free.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/33sec.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/3SEC.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-2"><span style="color: lime; font-family: monospace, Arial">BUY 20PTS</span></button></td>
           </tr>
           <tr>
-            <td><div class="farm-btn" id="farm-btn-3"><img src="Images/500.png" width="95%" height="20px" /></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-3">Collect</p></td>
+            <td id="cash-point-2"><div class="farm-btn" id="farm-btn-3"><img src="Images/500.png" width="95%" height="20px" /></div></td>
+            <td id="collect-row-3" style="background-color: darkgreen"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-3"><img src="Images/Ready.png" width="95%" height="20px" /></p></td>
             <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/Free.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/55sec.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/5SEC.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-3"><span style="color: lime; font-family: monospace, Arial">BUY 30PTS</span></button></td>       
           </tr>
           <tr>
-            <td><div class="farm-btn" id="farm-btn-4"><img src="Images/1000.png" width="95%" height="20px" /></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-4">Collect</p></td>
+            <td id="cash-point-3"><div class="farm-btn" id="farm-btn-4"><img src="Images/1000.png" width="95%" height="20px" /></div></td>
+            <td id="collect-row-4" style="background-color: darkgreen"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-4"><img src="Images/Ready.png" width="95%" height="20px" /></p></td>
             <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;"><img src="Images/Free.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/108sec.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/8SEC.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-4"><span style="color: lime; font-family: monospace, Arial">BUY 40PTS</span></button></td>          
           </tr>
           <tr>
-            <td><div style="display: none" class="farm-btn" id="farm-btn-5"><img src="Images/2000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn"><img src="Images/Buy.png" width="50px" height="35px"></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-5"><img src="Images/Buy-text.png" width="90%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel"><img src="Images/250cost.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/2015sec.png" width="95%" height="20px" /></p></td>
+            <td id="cash-point-4"><div style="display: none" class="farm-btn" id="farm-btn-5"><img src="Images/2000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-5"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-5"><img src="Images/Buy.png" width="90%" height="35px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel"><img src="Images/250.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/2015s.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-5"><span style="color: lime; font-family: monospace, Arial;">BUY 50PTS</span></button></td>        
           </tr>
           <tr>
-            <td><div style="display: none" class="farm-btn" id="farm-btn-6"><img src="Images/3500.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-2"><img src="Images/Buy.png" width="50px" height="35px"></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-6"><strong><img src="Images/Buy-text.png" width="90%" height="20px" /></strong></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-2"><img src="Images/500cost.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/3520sec.png" width="95%" height="20px" /></p></td>
+            <td id="cash-point-5"><div style="display: none" class="farm-btn" id="farm-btn-6"><img src="Images/3500.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-2"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-6"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-6"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-2"><img src="Images/500 (1).png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/3520s.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-6"><span style="color: lime; font-family: monospace, Arial">BUY 60PTS</span></button></td>        
           </tr>
           <tr>
-            <td><div style="display: none" class="farm-btn" id="farm-btn-7"><img src="Images/5000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-3"><img src="Images/Buy.png" width="50px" height="35px"></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-7"><strong><img src="Images/Buy-text.png" width="90%" height="20px" /></strong></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-3"><img src="Images/1000cost.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/5030sec.png" width="95%" height="20px" /></p></td>
+            <td id="cash-point-6"><div style="display: none" class="farm-btn" id="farm-btn-7"><img src="Images/5000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-3"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-7"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-7"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-3"><img src="Images/1000 (1).png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/5030s.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-7"><span style="color: lime; font-family: monospace, Arial">BUY 70PTS</span></button></td>          
           </tr>
           <tr>
-            <td><div style="display: none" class="farm-btn" id="farm-btn-8"><img src="Images/1000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-4"><img src="Images/Buy.png" width="50px" height="35px"></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-8"><strong><img src="Images/Buy-text.png" width="90%" height="20px" /></strong></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-4"><img src="Images/3000cost.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime">$10<img src="Images/Instant.png" width="95%" height="20px" /></p></td>
+            <td><button style="display: none;" class="farm-btn" id="farm-btn-10"><img src="Images/AUTO.png" width="95%" height="25px" /></button><div style="color: lime" class="farm-btn" id="buy-farm-btn-6"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-8"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-10"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-6"><img src="Images/1750.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/52s.png" width="95%" height="20px" /><img id="auto-pic-1" src="Images/AUTO.png" width="95%" height="15px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-8"><span style="color: lime; font-family: monospace, Arial">BUY 80PTS</span></button></td>
           </tr>
           <tr>
-            <td><div style="display: none" class="farm-btn" id="farm-btn-9"><img src="Images/2000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-5"><img src="Images/Buy.png" width="50px" height="35px"></div></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: yellow" id="cooldown-9"><strong><img src="Images/Buy-text.png" width="90%" height="20px" /></strong></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-5"><img src="Images/5000cost.png" width="95%" height="20px" /></p></td>
-            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime">$20<img src="Images/Instant.png" width="95%" height="20px" /></p></td>
+            <td><button style="display: none;" class="farm-btn" id="farm-btn-11"><img src="Images/AUTO.png" width="95%" height="25px" /></button><div style="color: lime" class="farm-btn" id="buy-farm-btn-7"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-9"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-11"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-7"><img src="Images/2500.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/104s.png" width="95%" height="20px" /><img id="auto-pic-2" src="Images/AUTO.png" width="95%" height="15px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-9"><span style="color: lime; font-family: monospace, Arial">BUY 90PTS</span></button></td>         
           </tr>
+          <tr class="display: none">
+            <td id="cash-point-7"><div style="display: none" class="farm-btn" id="farm-btn-8"><img src="Images/1000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-4"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-10"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-8"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-4"><img src="Images/3000.png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/Instant.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-10"><span style="color: lime; font-family: monospace, Arial">BUY 100PTS</span></button></td>          
+          </tr>
+          <tr class="display: none">
+            <td id="cash-point-8"><div style="display: none" class="farm-btn" id="farm-btn-9"><img src="Images/2000.png" width="95%" height="20px" /></div><div style="color: lime" class="farm-btn" id="buy-farm-btn-5"><img src="Images/BUY-FARM.png" width="70px" height="30px"></div></td>
+            <td id="collect-row-11"><p style="font-weight: bold; font-family: Arial; color: yellow" id="cooldown-9"><strong><img src="Images/Buy.png" width="90%" height="35px" /></strong></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime;" id="price-panel-5"><img src="Images/5000 (2).png" width="95%" height="20px" /></p></td>
+            <td><p style="font-weight: bold; font-family: fantasy, Arial; color: lime"><img src="Images/Instant.png" width="95%" height="20px" /></p></td>
+            <td><button style="width: 90%; height: fit-content" class="purchase-btn" id="buy-double-11"><span style="color: lime; font-family: monospace, Arial">BUY 150PTS</span></button></td>          
+          </tr>          
         </table>
       </div>
       <div style="display: none; border: none; width: fit-content; box-shadow: none; font-family: monospace, Arial" class="panel-2" id="shop-menu">
-        <div class="panel" style="border: none; box-shadow: none; font-family: Helvetica"><h3><img src="Images/INCOME-UPGRADES.png" width="95%" height="20px" /></h3></div>
-        <div class="panel" style="border: none; box-shadow: none; font-family: Helvetica"><h3 id="owned-upgrades-output">OWNED UPGRADES : 0</h3></div>
-        <div class="panel" style="border: none; box-shadow: none; font-family: Helvetica"><h3 id="total-passive-earnings-output"></h3></div>
-       <div class="item-slot" id="item-slot-1">
+        <div class="panel" style="border: none; box-shadow: none; font-family: monospace, Arial"><h3><img src="Images/INCOME-UPGRADES.png" width="95%" height="20px" /></h3></div>
+        <div class="item-slot" id="item-slot-1">
           <p>+$5/15SEC</p>
           <p>+1PTS</p>
           <h4><img src="Images/100cost.png" width="95%" height="25px" /></h4>
@@ -238,7 +503,7 @@
         </div>
         <div class="item-slot" id="item-slot-2">
           <p>+$10/20SEC</p>
-          <p>+2PTS</p>
+          <p>+1PTS</p>
           <h4><img src="Images/200.png" width="95%" height="25px" /></h4>
           <button onclick="playAudio3()" class="purchase-btn" id="buy-btn-2"><img src="Images/PURCHASE.png" width="95%" height="20px" /></button>
         </div>
@@ -266,28 +531,53 @@
           <h4><img src="Images/1500.png" width="95%" height="25px" /></h4>
           <button onclick="playAudio3()" class="purchase-btn" id="buy-btn-6"><img src="Images/PURCHASE.png" width="95%" height="20px" /></button>
         </div>
+        <div class="item-slot" id="item-slot-7">
+          <p>+$125/40sec</p>
+          <p>+5PTS</p>
+          <h4><img src="Images/2500 (2).png" width="95%" height="25px" /></h4>
+          <button onclick="playAudio3()" class="purchase-btn" id="buy-btn-7"><img src="Images/PURCHASE.png" width="95%" height="20px" /></button>
+        </div>
+        <div class="item-slot" id="item-slot-8">
+          <p>+$200/1min</p>
+          <p>+10PTS</p>
+          <h4><img src="Images/3500 (1).png" width="95%" height="25px" /></h4>
+          <button onclick="playAudio3()" class="purchase-btn" id="buy-btn-8"><img src="Images/PURCHASE.png" width="95%" height="20px" /></button>
+        </div>
+        <div class="item-slot" id="item-slot-9">
+          <p>$1/1sec</p>
+          <p>+5PTS</p>
+          <h4><img src="Images/15-PTS.png" width="95%" height="25px" /></h4>
+          <button onclick="playAudio3()" class="purchase-btn" id="buy-btn-9"><img src="Images/PURCHASE.png" width="95%" height="20px" /></button>
+        </div>
       </div>
-      <div style="display: none; border: none; flex-direction: column;" class="panel" id="admin-menu">
-        <div style="border: none; box-shadow: none; flex-direction: row; flex-wrap: wrap">
-          <button type="number" class="purchase-btn" id="add-funds-btn" value="100">+$100</button>
-          <button type="number" class="purchase-btn" id="add-funds-btn-2" value="500">+$500</button>
-          <button type="number" class="purchase-btn" id="add-funds-btn-3" value="2500">+$2,500</button>
-          <button class="purchase-btn" id="clear-balance" value="100">CLEAR</button><br>
-          <button class="purchase-btn" id="buy-all-upgrades-btn">UNLOCK UPGRADES</button>
-          <button class="purchase-btn" id="add-cash-manual-btn">ADD CASH [MANUAL]</button><br>
+      <div style="display: none; border: none; box-shadow: none; flex-wrap: wrap; flex-direction: row;" class="panel" id="admin-menu"> <!-- ADMIN -->
+        <div style="border: none; box-shadow: none; flex-direction: column;">
+          <button type="number" class="purchase-btn" id="add-funds-btn" value="100"><img src="Images/100cost.png" width="80%" height="20px" /></button>
+          <button type="number" class="purchase-btn" id="add-funds-btn-2" value="500"><img src="Images/500cost.png" width="80%" height="20px" /></button>
+          <button type="number" class="purchase-btn" id="add-funds-btn-3" value="2500"><img src="Images/2500.png" width="80%" height="20px" /></button><br>
+          <button type="number" class="purchase-btn" id="add-diamond-btn" value="1"><img src="Images/Diamond-icon.png" width="80%" height="40px" /></button><br>
+          <button class="purchase-btn" id="clear-balance" value="100" style="width: fit-content"><img src="Images/CLEAR-BALANCES.png" width="80%" height="20px" /></button><br>
+          <button class="purchase-btn" id="buy-all-upgrades-btn" style="width: fit-content"><img src="Images/UNLOCK-ALL-INCOME-UPGRAD.png" width="80%" height="20px" /></button>
+          <button class="purchase-btn" id="unlock-perk-1" style="width: fit-content"><img src="Images/UNLOCK-PERK-1.png" width="80%" height="20px" /></button><br>  
+          <button class="purchase-btn" id="unlock-perk-2" style="width: fit-content"><img src="Images/UNLOCK-PERK-2.png" width="80%" height="20px" /></button><br>
+          <button class="purchase-btn" id="unlock-all-x2-incomes" style="width: fit-content"><img src="Images/UNLOCK-ALL-X2-INCOMES.png" width="80%" height="20px" /></button><br>                                 
+          <button class="purchase-btn" id="add-cash-manual-btn" style="width: fit-content"><img src="Images/ADD-CASH--MANUAL--TEST.png" width="80%" height="20px" /></button><br>
+          <button class="purchase-btn" id="add-score-manual-btn" style="width: fit-content"><img src="Images/ADD-SCORE--MANUAL--TES.png" width="80%" height="20px" /></button><br>
+          <button class="purchase-btn" id="unlock-farms-btn" style="width: fit-content">UNLOCK ALL CASH FARMS</button><br>               
+          <button class="purchase-btn" id="test-mode-btn" style="width: fit-content">TEST MODE</button><br>       
           </div>
       </div>
-      <div style="display: none; border: none; box-shadow: none" class="panel" id="output-panel">
-    <h3 style="color: snow; font-size: 14px; font-family: monospace, Helvetica; box-shadow: 0.2px 0.2px gold; text-transform: uppercase" id="output-text"></h3>
-  </div>
+    <div style="display: none; border: none; box-shadow: none" class="panel" id="output-panel">
+          <h3 style="color: snow; font-size: 14px; font-family: monospace, Helvetica; text-transform: uppercase" id="output-text"></h3>
+    </div>
       <div style="display: none; box-shadow: none" class="panel" id="perform-panel">
       <h3 id="selection-output"></h3>
     </div>
-    </div>
-            <footer style="margin-top: 5px; text-align: center; font-family: Helvetica, Arial">
-              <img src="Images/TYCOON-BASIC-V161.png" width="95%" height="20px" /> 
+    <footer style="margin-top: 5px; text-align: center; font-family: Arial">
+              <img src="Images/WEALTH-SIMULATOR-V172.png" width="95%" height="20px" /> 
             </footer>
+    </div>
   </div>
-  <script src="scripts.js"></script>
+  <script src="Scripts.js"></script>
 </body>
 </html>
